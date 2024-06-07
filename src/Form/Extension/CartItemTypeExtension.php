@@ -37,33 +37,6 @@ final class CartItemTypeExtension extends AbstractTypeExtension
                 'groups' => ['sylius'],
             ])
         ]);
-
-        if (isset($options['product']) && $options['product']->hasVariants() && !$options['product']->isSimple()) {
-            $type =
-                ProductInterface::VARIANT_SELECTION_CHOICE === $options['product']->getVariantSelectionMethod()
-                    ? ProductVariantChoiceType::class
-                    : ProductVariantMatchType::class
-            ;
-
-            $builder->add('variant', $type, [
-                'product' => $options['product'],
-            ]);
-        }
-    }
-
-    /**
-     * We need to override this method to allow setting 'product'
-     * option, by default it will be null so we don't get the variant choice
-     * when creating full cart form.
-     */
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver
-            ->setDefined([
-                'product',
-            ])
-            ->setAllowedTypes('product', ProductInterface::class)
-        ;
     }
 
     public static function getExtendedTypes(): iterable
