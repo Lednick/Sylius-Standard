@@ -33,4 +33,4 @@ services:
         arguments:
             - '@translator.default'
         tags:
-            - { name: form.type_extension, extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartItemType, priority: -1}
+            - { name: form.type_extension, extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartItemType}
